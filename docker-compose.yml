@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+  db:
+    image: 'postgres'
+    container_name: postgres
+    environment:
+      # DATABASE_HOST: 127.0.0.1
+      # POSTGRES_DB: library
+      POSTGRES_USER: 'docker'
+      POSTGRES_PASSWORD: '123456'
+      # PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - data:/var/lib/postgresql/data
+      - .:/database.sql
+    # ports:
+    #   - "4321:5421"
+    # networks:
+    #   postgres:
+    #     ipv4_adress: "178.57.55.184"
+    restart: always
+  server:
+    build:
+      context: server
+      dockerfile: Dockerfile
+    ports: 
+      - "5000:5000"
+    depends_on:
+      - db
+    container_name: server
+    command: npm run dev
+  client:
+    image: react-image
+    ports:
+      - "3000:3000"
+    container_name: client
+volumes:
+  data:
+  

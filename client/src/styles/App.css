@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+div{
+    margin-left: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+.table_content{
+    margin-top: 0rem;
+
+    display: flex;
+    justify-content: center;
+    
+}
+
+.getAllButton{
+    display: flex;
+    justify-content: center;
+}
+table {
+    
+	margin-bottom: 20px;
+	border: 15px solid #F2F8F8;
+	border-top: 5px solid #F2F8F8;
+	border-collapse: collapse; 
+}
+table th {
+	font-weight: bold;
+	padding: 5px;
+	background: #F2F8F8;
+	border: none;
+	border-bottom: 5px solid #F2F8F8;
+}
+table td {
+	padding: 5px;
+	border: none;
+	border-bottom: 5px solid #F2F8F8;
+}
