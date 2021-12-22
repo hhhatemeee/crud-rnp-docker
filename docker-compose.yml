@@ -15,9 +15,9 @@ services:
       
     # ports:
     #   - "4321:5421"
-    # networks:
-    #   postgres:
-    #     ipv4_adress: "178.57.55.184"
+    networks:
+      postgres:
+        ipv4_address: "192.168.11.1"
     restart: always
   server:
     build:
@@ -29,6 +29,10 @@ services:
       - db
     container_name: server
     command: npm run dev
+    networks:
+      postgres:
+        ipv4_address: "192.168.11.2"
+    restart: unless-stopped
   client:
     build:
       context: client
@@ -37,5 +41,16 @@ services:
       - "3000:3000"
     container_name: client
     command: npm start
+    networks:
+      postgres:
+        ipv4_address: "192.168.11.3"
+    restart: unless-stopped
+networks:
+  postgres:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.11.0/10
+
 
 

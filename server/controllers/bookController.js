@@ -21,7 +21,24 @@ class BookController {
         res.json('rabotaet')
     }
     async updateBook(req, res) {
-        const { id, title, author, releaseDate, genre, price } = req.body
+        let { id, title, author, releaseDate, genre, price } = req.body
+        const bookGet = await db.query('select * from Books where id = $1', [Number(id)])
+        if (title == '') {
+            title = bookGet.rows[0].title
+            console.log(title);
+        }
+        if (author == '') {
+            author = bookGet.rows[0].author
+        }
+        if (releaseDate == '') {
+            releaseDate = bookGet.rows[0].releaseDate
+        }
+        if (genre == '') {
+            genre = bookGet.rows[0].genre
+        }
+        if (price == '') {
+            price = bookGet.rows[0].price
+        }
         const book = await db.query('update Books set title = $2, author = $3, releaseDate = $4, genre = $5, price = $6 where id = $1 RETURNING *',
             [id, title, author, releaseDate, genre, price]);
         res.json(book.rows)
