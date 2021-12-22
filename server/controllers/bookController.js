@@ -17,9 +17,8 @@ class BookController {
         } catch (e) { console.log(e.message) }
     }
     async getOneBook(req, res) {
-        const author = req.params.author
-        const book = await db.query('select * from Books where author = $1', [author])
-        res.json(book.rows)
+        
+        res.json('rabotaet')
     }
     async updateBook(req, res) {
         const { id, title, author, releaseDate, genre, price } = req.body

@@ -10,8 +10,9 @@ services:
       POSTGRES_PASSWORD: '123456'
       # PG_DATA: /var/lib/postgresql/data
     volumes:
-      - data:/var/lib/postgresql/data
-      - .:/docker-entrypoint-initdb.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      # - data:/var/lib/postgresql/data
+      
     # ports:
     #   - "4321:5421"
     # networks:
@@ -23,16 +24,18 @@ services:
       context: server
       dockerfile: Dockerfile
     ports: 
-      - "5000:5000"
+      - "5042:5042"
     depends_on:
       - db
     container_name: server
     command: npm run dev
   client:
-    image: react-image
-    ports:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    ports: 
       - "3000:3000"
     container_name: client
-volumes:
-  data:
-  
+    command: npm start
+
+

@@ -14,7 +14,7 @@ const App = () => {
 
   // делаем гет запрос в бд для выдачи книг
   const retrieveBooks = async () => {
-    const response = await axios.get('http://localhost:5000/api/books')
+    const response = await axios.get('http://localhost:5042/api/books')
     return response.data;
   }
 
@@ -38,7 +38,7 @@ const App = () => {
     console.log(book.releaseDate);
     console.log(Date.now());
 
-    const response = await axios.post('http://localhost:5000/api/books', request)
+    const response = await axios.post('http://localhost:5042/api/books', request)
     setBooks([...books, response.data]);
 
   }
@@ -51,7 +51,7 @@ const App = () => {
       ...book
     }
     console.log(request);
-    const response = await axios.put(`http://localhost:5000/api/books/${request.id}`, request)
+    const response = await axios.put(`http://localhost:5042/api/books/${request.id}`, request)
   }
 
   //Удаление книги
@@ -60,7 +60,7 @@ const App = () => {
 
     console.log(typeof (request));
 
-    const response = await axios.delete(`http://localhost:5000/api/books/${request}`)
+    const response = await axios.delete(`http://localhost:5042/api/books/${request}`)
     console.log(response);
   }
 
