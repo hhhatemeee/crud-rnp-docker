@@ -23,6 +23,7 @@ class BookController {
     async updateBook(req, res) {
         let { id, title, author, releaseDate, genre, price } = req.body
         const bookGet = await db.query('select * from Books where id = $1', [Number(id)])
+        res.json(bookGet)
         if (title == '') {
             title = bookGet.rows[0].title
             console.log(title);
@@ -31,7 +32,7 @@ class BookController {
             author = bookGet.rows[0].author
         }
         if (releaseDate == '') {
-            releaseDate = bookGet.rows[0].releaseDate
+            releaseDate = bookGet.rows[0].releasedate
         }
         if (genre == '') {
             genre = bookGet.rows[0].genre

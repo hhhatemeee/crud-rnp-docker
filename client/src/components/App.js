@@ -22,6 +22,7 @@ const App = () => {
   useEffect(() => {
     const getAllBooks = async () => {
       const allBooks = await retrieveBooks();
+      console.log(allBooks)
       if (allBooks) setBooks(allBooks)
     }
     getAllBooks();

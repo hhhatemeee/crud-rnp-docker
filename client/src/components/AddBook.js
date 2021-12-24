@@ -67,7 +67,7 @@ class AddBook extends React.Component {
                         <label >Дата выпуска</label>
                         <input type="text"
                             name="releaseDate"
-                            placeholder="Введите дату книги"
+                            placeholder="Введите дату книги. Формат записи 'DD-MM-YY'"
                             value={this.state.releaseDate}
                             onChange={(e) => this.setState({ releaseDate: e.target.value })} />
 
